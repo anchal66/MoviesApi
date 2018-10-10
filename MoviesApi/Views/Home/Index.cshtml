@@ -1,0 +1,28 @@
+﻿@model IEnumerable<MoviesApi.Controllers.Movie>
+@{
+    ViewBag.Title = "Home Page";
+    int i = 0;
+}
+<div class="container">
+    @foreach (var item in Model)
+    {
+        i = i + 1;
+        <h2>@Html.DisplayFor(modelItem => item.title)</h2>
+        <div class="row bg-dark text-white p-2 rounded border shadow-lg">
+            <div class="col-md-4">
+                <img class="img-fluid rounded border" style="width:250px;" src='@Html.DisplayFor(modelItem => item.image)' />
+            </div>
+                <div class="col-md-6 text-white">
+                    <h4><b>Rating:</b> @Html.DisplayFor(modelItem => item.rating)</h4>
+
+                    <h4><b>Release Year:</b> @Html.DisplayFor(modelItem => item.releaseYear)</h4>
+
+                    <h4>
+                        <b>Genre:</b> <a onclick="javascript:document.getElementById('@i').style.display= '';" href="#">Show Genre</a><br />
+                        <span id="@i" style="display:none">@string.Join(", ", item.genre)</span>
+                    </h4>
+                 </div>
+            </div><hr />
+            }
+        </div>
+
